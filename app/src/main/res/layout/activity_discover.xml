@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".DiscoverActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/discover_activity_accueil_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:text="Accueil" />
+
+        <Button
+            android:id="@+id/discover_activity_fav_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:text="Ma liste" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RadioButton
+                    android:id="@+id/discover_activity_radio_abv_0_5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Taux d'alcool : 0-5%" />
+
+                <RadioButton
+                    android:id="@+id/discover_activity_radio_abv_5_8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Taux d'alcool : 5-8%" />
+
+                <RadioButton
+                    android:id="@+id/discover_activity_radio_abv_plus_8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Taux d'alcool : + de 8%" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RadioButton
+                    android:id="@+id/discover_activity_radio_triple"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Belgian-Style Tripel" />
+
+                <RadioButton
+                    android:id="@+id/discover_activity_radio_blonde"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Belgian-Style Blonde Ale" />
+
+                <RadioButton
+                    android:id="@+id/discover_activity_radio_fruit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Belgian-Style Fruit Lambic" />
+            </RadioGroup>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/discover_activity_discover_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Je découvre" />
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+</LinearLayout>
