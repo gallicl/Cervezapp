@@ -12,6 +12,7 @@ import android.widget.TextView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 public class MyAdapter extends BaseAdapter {
 
@@ -30,7 +31,7 @@ public class MyAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
+    public JSONObject getItem(int position) {
         return jsonArray.optJSONObject(position);
     }
 
@@ -42,29 +43,30 @@ public class MyAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        JSONObject json = (JSONObject) getItem(position);
-        if (convertView == null) {
-            convertView = LayoutInflater.from(context_)
-                    .inflate(R.layout.textviewlayout, parent, false);
-        }
-        String name = null;
-        String abv = null;
-        String stylename=null;
-        try {
-            name = json.getString("nameDisplay");
-            abv = json.getString("abv");
-            JSONObject style =json.getJSONObject("style");
-            stylename = style.getString("name");
+                JSONObject json = (JSONObject) getItem(position);
+                if (convertView == null) {
+                    convertView = LayoutInflater.from(context_)
+                            .inflate(R.layout.textviewlayout, parent, false);
+                }
+                String name = null;
+                String abv = null;
+                String stylename = null;
+                try {
+                    name = json.getString("nameDisplay");
+                    abv = json.getString("abv");
+                    JSONObject style = json.getJSONObject("style");
+                    stylename = style.getString("name");
 
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        TextView tv_name = (TextView)convertView.findViewById(R.id.list_text_view_name);
-        TextView tv_abv = (TextView)convertView.findViewById(R.id.list_text_view_abv);
-        TextView tv_stylename = (TextView)convertView.findViewById(R.id.list_text_view_stylename);
-        tv_name.setText( name);
-        tv_abv.setText(abv);
-        tv_stylename.setText(stylename);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                TextView tv_name = (TextView) convertView.findViewById(R.id.list_text_view_name);
+                TextView tv_abv = (TextView) convertView.findViewById(R.id.list_text_view_abv);
+                TextView tv_stylename = (TextView) convertView.findViewById(R.id.list_text_view_stylename);
+                tv_name.setText(name);
+                tv_abv.setText(abv);
+                tv_stylename.setText(stylename);
+
 
 
         return convertView;

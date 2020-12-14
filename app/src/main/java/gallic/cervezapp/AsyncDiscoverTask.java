@@ -1,5 +1,6 @@
 package gallic.cervezapp;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.TextView;
@@ -38,20 +39,23 @@ public class AsyncDiscoverTask extends AsyncTask<String,Void, JSONObject> {
         Log.i("CIO", "on est bien dans le post execute");
         JSONArray data= null;
         try {
-                data = json.getJSONArray("data");
-                for (int i = 0; i < data.length(); i++) {
-                    JSONObject data_entry = data.getJSONObject(i);
-                    /*String name_entry = data_entry.getString("nameDisplay");*/
-                    adapter_.add(data_entry);
-                    adapter_.notifyDataSetChanged();
-                    Log.i("CIO", data_entry + " ajouté à myAdapter");
-                }
+            data = json.getJSONArray("data");
+            for (int i = 0; i < data.length(); i++) {
+                JSONObject data_entry = data.getJSONObject(i);
+                /*String name_entry = data_entry.getString("nameDisplay");*/
+                adapter_.add(data_entry);
+                adapter_.notifyDataSetChanged();
+                Log.i("CIO", data_entry + " ajouté à myAdapter");
+            }
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-    }
-
+            }
 
 }
+
+
+
+
+

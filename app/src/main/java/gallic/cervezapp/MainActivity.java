@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse{
                     int_amount-=1;
                     if (newRowId != -1){
                         int duration = Toast.LENGTH_SHORT;
-                        Toast.makeText(getApplicationContext(),"Bière ajoutée au stock",duration );
+                        Toast.makeText(getApplicationContext(),"Bière ajoutée au stock",duration ).show();
 
                     }
                 }

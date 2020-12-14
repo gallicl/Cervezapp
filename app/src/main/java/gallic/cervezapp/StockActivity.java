@@ -25,12 +25,23 @@ public class StockActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stock);
 
+        // Retour vers la page d'accueil
         Button accueil_btn=(Button)findViewById(R.id.stock_activity_accueil_btn);
         accueil_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent mainActivity=new Intent(getApplicationContext(),MainActivity.class);
                 startActivity(mainActivity);
+            }
+        });
+
+        // Vers la page Découvrir
+        Button decouvrir_btn = (Button)findViewById(R.id.stock_activity_decouvrir_btn);
+        decouvrir_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent discoverActivity=new Intent(getApplicationContext(),DiscoverActivity.class);
+                startActivity(discoverActivity);
             }
         });
 
@@ -123,6 +134,7 @@ public class StockActivity extends AppCompatActivity {
                 cursor.moveToPosition(0);
                 long itemId = cursor.getLong(cursor.getColumnIndexOrThrow(FeedReaderContract.FeedEntry._ID));
                 String item = Long.toString(itemId);
+                cursor.close();
 
                 String selection2 = FeedReaderContract.FeedEntry._ID + " = ?";
 // Specify arguments in placeholder order.
@@ -177,5 +189,5 @@ public class StockActivity extends AppCompatActivity {
         }
         cursor.close();
         list.setAdapter(tableau);
-    };
+    }
 }

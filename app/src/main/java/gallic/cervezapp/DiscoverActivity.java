@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.RadioButton;
 
 public class DiscoverActivity extends AppCompatActivity {
@@ -17,12 +16,23 @@ public class DiscoverActivity extends AppCompatActivity {
         setContentView(R.layout.activity_discover);
 
 
+        // Retour vers la page d'acceuil
         Button accueil_btn = (Button) findViewById(R.id.discover_activity_accueil_btn);
         accueil_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(mainActivity);
+            }
+        });
+
+        // Vers la page Ma Liste
+        Button stock_btn = (Button)findViewById(R.id.discover_activity_stock_btn);
+        stock_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent stockActivity = new Intent(getApplicationContext(), StockActivity.class);
+                startActivity(stockActivity);
             }
         });
 
@@ -61,8 +71,6 @@ public class DiscoverActivity extends AppCompatActivity {
                 Intent list = new Intent(getApplicationContext(),ListActivity.class);
                 list.putExtra("url",url);
                 startActivity(list);
-
-
             }
 
         });
