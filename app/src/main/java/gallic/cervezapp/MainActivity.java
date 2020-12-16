@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Vers page Découvrir
         Button discover_btn=(Button)findViewById(R.id.activity_main_decouvrir_btn);
         discover_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,6 +38,8 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse{
             }
         });
 
+
+        // Vers page Ma Liste
         Button favory_btn=(Button)findViewById(R.id.activity_main_favoris_btn);
         favory_btn.setOnClickListener(new View.OnClickListener() {
             @Override

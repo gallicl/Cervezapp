@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -45,24 +46,25 @@ public class StockActivity extends AppCompatActivity {
             }
         });
 
+
+        // Affichage de la liste du stock
         FeedReaderDbHelper dbHelper = new FeedReaderDbHelper(getApplicationContext());
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         ListView list = (ListView) findViewById(R.id.stock_activity_list);
         ArrayAdapter<String> tableau = new ArrayAdapter<String>(list.getContext(), R.layout.list_of_stock_layout);
-        /*UpdateList();*/
 
-// Define a projection that specifies which columns from the database
-// you will actually use after this query.
+
+        // Define a projection
         String[] projection = {
                 BaseColumns._ID,
                 FeedReaderContract.FeedEntry.COLUMN_NAME_BEER
         };
 
-// Filter results WHERE "title" = 'My Title'
+        // Filter
         String selection = null;
         String[] selectionArgs = null;
 
-// How you want the results sorted in the resulting Cursor
+        // How you want the results sorted in the resulting Cursor
         String sortOrder =
                 FeedReaderContract.FeedEntry.COLUMN_NAME_BEER + " DESC";
 
@@ -90,11 +92,20 @@ public class StockActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Integer max = tableau.getCount();
-                Random rand = new Random();
-                Integer rank = rand.nextInt(max+1);
-                String itemName = tableau.getItem(rank);
-                TextView tv = (TextView)findViewById(R.id.stock_activity_beer_tv);
-                tv.setText(itemName);
+                if (max != 0) {
+                    Random rand = new Random();
+                    Integer rank = 0;
+                    if (max != 1) {
+                        rank = rand.nextInt(max - 1);
+                    }
+                    String itemName = tableau.getItem(rank);
+                    TextView tv = (TextView) findViewById(R.id.stock_activity_beer_tv);
+                    tv.setText(itemName);
+                }
+                else {
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast.makeText(getApplicationContext(),"Votre stock est vide",duration ).show();
+                }
             }
         });
 
@@ -105,51 +116,60 @@ public class StockActivity extends AppCompatActivity {
         delete_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView text_name=(TextView) findViewById(R.id.stock_activity_beer_tv);
-                String name = text_name.getText().toString();
+                if (tableau.getCount()!=0) {
+                    TextView text_name = (TextView) findViewById(R.id.stock_activity_beer_tv);
+                    String name = text_name.getText().toString();
 
-                String[] projection = {
-                        BaseColumns._ID,
-                        FeedReaderContract.FeedEntry.COLUMN_NAME_BEER
-                };
-                // Define 'where' part of query.
-                String selection = FeedReaderContract.FeedEntry.COLUMN_NAME_BEER + " LIKE ?";
-// Specify arguments in placeholder order.
-                String[] selectionArgs = { name};
+                    String[] projection = {
+                            BaseColumns._ID,
+                            FeedReaderContract.FeedEntry.COLUMN_NAME_BEER
+                    };
+                    // Define 'where' part of query.
+                    String selection = FeedReaderContract.FeedEntry.COLUMN_NAME_BEER + " LIKE ?";
+                    // Specify arguments in placeholder order.
+                    String[] selectionArgs = {name};
 
-                // How you want the results sorted in the resulting Cursor
-                String sortOrder =
-                        FeedReaderContract.FeedEntry.COLUMN_NAME_BEER + " DESC";
+                    // How you want the results sorted in the resulting Cursor
+                    String sortOrder =
+                            FeedReaderContract.FeedEntry.COLUMN_NAME_BEER + " DESC";
 
-                Cursor cursor = db.query(
-                        FeedReaderContract.FeedEntry.TABLE_NAME,   // The table to query
-                        projection,             // The array of columns to return (pass null to get all)
-                        selection,              // The columns for the WHERE clause
-                        selectionArgs,          // The values for the WHERE clause
-                        null,                   // don't group the rows
-                        null,                   // don't filter by row groups
-                        sortOrder               // The sort order
-                );
+                    Cursor cursor = db.query(
+                            FeedReaderContract.FeedEntry.TABLE_NAME,   // The table to query
+                            projection,             // The array of columns to return (pass null to get all)
+                            selection,              // The columns for the WHERE clause
+                            selectionArgs,          // The values for the WHERE clause
+                            null,                   // don't group the rows
+                            null,                   // don't filter by row groups
+                            sortOrder               // The sort order
+                    );
 
-                cursor.moveToPosition(0);
-                long itemId = cursor.getLong(cursor.getColumnIndexOrThrow(FeedReaderContract.FeedEntry._ID));
-                String item = Long.toString(itemId);
-                cursor.close();
+                    cursor.moveToPosition(0);
+                    long itemId = cursor.getLong(cursor.getColumnIndexOrThrow(FeedReaderContract.FeedEntry._ID));
+                    String item = Long.toString(itemId);
+                    cursor.close();
 
-                String selection2 = FeedReaderContract.FeedEntry._ID + " = ?";
-// Specify arguments in placeholder order.
-                String[] selectionArgs2 = { item};
+                    String selection2 = FeedReaderContract.FeedEntry._ID + " = ?";
+                    // Specify arguments in placeholder order.
+                    String[] selectionArgs2 = {item};
 
-// Issue SQL statement.
-                int deletedRows = db_writable.delete(FeedReaderContract.FeedEntry.TABLE_NAME, selection2, selectionArgs2);
-                if (deletedRows != 0){
-                    Log.i("BDD", "bière retirée du stock");
+                    // Issue SQL statement.
+                    int deletedRows = db_writable.delete(FeedReaderContract.FeedEntry.TABLE_NAME, selection2, selectionArgs2);
+                    TextView tv = (TextView) findViewById(R.id.stock_activity_beer_tv);
+                    tv.setText("");
+                    if (deletedRows != 0) {
+                        Log.i("BDD", "bière retirée du stock");
+                    }
+                    UpdateList();
                 }
-                UpdateList();
+                else{
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast.makeText(getApplicationContext(),"Aucune bière n'a été sélectionné",duration ).show();
+                }
             }
         });
     }
 
+    // Pour mettre à jour la liste du stock
     public void UpdateList(){
         FeedReaderDbHelper dbHelper = new FeedReaderDbHelper(getApplicationContext());
         SQLiteDatabase db = dbHelper.getReadableDatabase();

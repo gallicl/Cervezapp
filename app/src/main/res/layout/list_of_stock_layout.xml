@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView android:text="TextView" android:id="@+id/montexte"
-    android:layout_width="wrap_content" android:layout_height="wrap_content"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-</TextView>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/montexte"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:background="@color/background_red"
+    android:text="TextView"
+    android:textAlignment="center"
+    android:textColor="@color/brown"></TextView>

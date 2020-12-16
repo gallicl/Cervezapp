@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,7 +43,6 @@ public class AsyncDiscoverTask extends AsyncTask<String,Void, JSONObject> {
             data = json.getJSONArray("data");
             for (int i = 0; i < data.length(); i++) {
                 JSONObject data_entry = data.getJSONObject(i);
-                /*String name_entry = data_entry.getString("nameDisplay");*/
                 adapter_.add(data_entry);
                 adapter_.notifyDataSetChanged();
                 Log.i("CIO", data_entry + " ajouté à myAdapter");

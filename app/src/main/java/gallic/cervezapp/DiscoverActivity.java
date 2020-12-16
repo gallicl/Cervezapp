@@ -49,6 +49,7 @@ public class DiscoverActivity extends AppCompatActivity {
         discover_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Définir l'url de requête en fonction des options sélectionnées
                 String url = "https://sandbox-api.brewerydb.com/v2/beers/?key=7fc7f255952ca4ad0dc7c9ad06a19005";
                 if (radio_abv1.isChecked()) {
                     url += "&abv=0,5";

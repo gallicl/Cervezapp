@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background_red">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,7 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
 
             <Button
                 android:id="@+id/activity_main_decouvrir_btn"
@@ -23,6 +25,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
+                android:insetTop="6dp"
                 android:text="Découvrir" />
 
             <Button
@@ -38,25 +41,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/activity_main_bieres_img"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:cropToPadding="false"
-                app:srcCompat="@drawable/bieres" />
 
             <TextView
                 android:id="@+id/main_activity_presentation_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginLeft="50dp"
                 android:layout_weight="1"
-                android:text="Que vous soyez un simple amateur ou un fervent de la bière, decouvrez ou redécouvrez vos bières favorites " />
+                android:text="Que vous soyez un simple amateur ou un vrai connaisseur de la bière, découvrez ou redécouvrez vos bières favorites " />
 
         </LinearLayout>
 
@@ -64,7 +59,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
 
             <TextView
                 android:id="@+id/main_activity_name_tv"
@@ -167,6 +163,16 @@
             </LinearLayout>
 
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/activity_main_bieres_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:cropToPadding="false"
+            app:srcCompat="@drawable/bieres" />
 
     </LinearLayout>
 </ScrollView>
